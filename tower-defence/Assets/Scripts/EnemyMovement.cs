@@ -5,13 +5,16 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private List<WayPoint> wayPoints = new List<WayPoint>();
-    [SerializeField] private float cellPerSecond = 1f;
+    [SerializeField] private float speed = 2f;
+    [SerializeField] [Range(0f, 1f)] private float travelPercent = 0f;
 
-    private WaitForSecondsRealtime _pathWaitTime;
+    private Vector3 startPos;
+    private Vector3 finalPos;
 
+    private WaitForEndOfFrame _pathwaitTime;
     private void Start()
     {
-        _pathWaitTime = new WaitForSecondsRealtime(cellPerSecond);
+        _pathwaitTime = new WaitForEndOfFrame();
         StartCoroutine(ProcessMovement());
     }
 
@@ -19,8 +22,15 @@ public class EnemyMovement : MonoBehaviour
     {
         foreach (var wayPoint in wayPoints)
         {
-            transform.position = wayPoint.transform.position;
-            yield return _pathWaitTime;
+            startPos = transform.position;
+            finalPos = wayPoint.transform.position;
+            travelPercent = 0f;
+            while(travelPercent < 1f)
+            {
+                travelPercent += Time.deltaTime * speed;
+                transform.position = Vector3.Lerp(startPos, finalPos, travelPercent);
+                yield return _pathwaitTime;
+            }
         }
     }
 }
