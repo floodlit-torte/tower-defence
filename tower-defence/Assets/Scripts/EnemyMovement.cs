@@ -25,6 +25,8 @@ public class EnemyMovement : MonoBehaviour
             startPos = transform.position;
             finalPos = wayPoint.transform.position;
             travelPercent = 0f;
+
+            transform.LookAt(finalPos);
             while(travelPercent < 1f)
             {
                 travelPercent += Time.deltaTime * speed;

@@ -7,13 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1331492893600447666, guid: db848db5bbcecf6469c030cbf1070ec9, type: 3}
+      propertyPath: isPlaycable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2095511313906526533, guid: db848db5bbcecf6469c030cbf1070ec9, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -2432090755550338912, guid: e618ab8e55a3ed942a408f4d1b7f896e, type: 3}
     - target: {fileID: 4632131918719940150, guid: db848db5bbcecf6469c030cbf1070ec9, type: 3}
       propertyPath: m_Name
-      value: TileRoadStraight
+      value: Tile Road Straight
       objectReference: {fileID: 0}
     - target: {fileID: 5437463584593003316, guid: db848db5bbcecf6469c030cbf1070ec9, type: 3}
       propertyPath: m_Name

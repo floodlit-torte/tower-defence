@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1331492893600447666, guid: db848db5bbcecf6469c030cbf1070ec9, type: 3}
+      propertyPath: isPlaycable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2095511313906526533, guid: db848db5bbcecf6469c030cbf1070ec9, type: 3}
       propertyPath: m_Mesh
       value: 
