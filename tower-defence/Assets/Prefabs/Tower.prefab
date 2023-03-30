@@ -4858,7 +4858,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f06b2a8af51eaa40970ae6c6bcc1d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TopMesh: {fileID: 6131056645070147807}
+  TopMesh: {fileID: 3144582324300694500}
+  radius: 15
+  bolts: {fileID: 7742220418550221189}
 --- !u!1 &6131056645070147807
 GameObject:
   m_ObjectHideFlags: 0
