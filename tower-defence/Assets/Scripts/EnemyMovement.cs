@@ -13,12 +13,16 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 finalPos;
 
     private WaitForEndOfFrame _pathwaitTime;
-    private void Start()
+
+    private void OnEnable()
     {
-        _pathwaitTime = new WaitForEndOfFrame();
         FindPath();
         ReturnToStart();
         StartCoroutine(ProcessMovement());
+    }
+    private void Start()
+    {
+        _pathwaitTime = new WaitForEndOfFrame();
     }
 
     private void ReturnToStart()
@@ -42,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
                 yield return _pathwaitTime;
             }
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     private void FindPath()
