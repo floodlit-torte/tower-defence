@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using System;
 
 public class ObjectPool : MonoBehaviour
 {
     [SerializeField] private GameObject enemy;
-    [SerializeField] private float _spawnTime = 1f;
-    [SerializeField] private int poolSize = 5;
+    [SerializeField] [Range(0.1f, 30f)]private float spawnTime = 1f;
+    [SerializeField] [Range(1, 20)]private int poolSize = 5;
 
     private WaitForSecondsRealtime _waitTime;
     private GameObject[] _pool;
@@ -29,7 +28,7 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        _waitTime = new WaitForSecondsRealtime(_spawnTime);
+        _waitTime = new WaitForSecondsRealtime(spawnTime);
         StartCoroutine(SpawnEnemy());
     }
     private IEnumerator SpawnEnemy()

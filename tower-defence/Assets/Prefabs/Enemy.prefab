@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: []
-  speed: 1
+  speed: 0.5
   travelPercent: 0
 --- !u!65 &7281288261153568488
 BoxCollider:
@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6d0266a4f23384f8534eec611a784e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reward: 25
+  penalty: 25
 --- !u!1 &6111887217662192846
 GameObject:
   m_ObjectHideFlags: 0

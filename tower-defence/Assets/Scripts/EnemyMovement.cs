@@ -3,6 +3,7 @@ using System.Collections.Generic; // lists
 using System.Collections;
 using System;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private List<WayPoint> path = new List<WayPoint>();
@@ -14,6 +15,8 @@ public class EnemyMovement : MonoBehaviour
 
     private WaitForEndOfFrame _pathwaitTime;
 
+    private Enemy _enemy;
+
     private void OnEnable()
     {
         FindPath();
@@ -23,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         _pathwaitTime = new WaitForEndOfFrame();
+        _enemy = GetComponent<Enemy>();
     }
 
     private void ReturnToStart()
@@ -30,6 +34,11 @@ public class EnemyMovement : MonoBehaviour
         transform.position = path[0].transform.position;
     }
 
+    private void FinishPath()
+    {
+        _enemy.StealGold();
+        gameObject.SetActive(false);
+    }
     private IEnumerator ProcessMovement()
     {
         foreach (var wayPoint in path)
@@ -46,17 +55,19 @@ public class EnemyMovement : MonoBehaviour
                 yield return _pathwaitTime;
             }
         }
-        gameObject.SetActive(false);
+        FinishPath();
     }
 
     private void FindPath()
     {
         path.Clear();
 
-        var wayPoints = GameObject.FindGameObjectsWithTag("Path");
-        foreach (var wayPoint in wayPoints)
+        var parent = GameObject.FindGameObjectWithTag("Path");
+        foreach (Transform child in parent.transform)
         {
-            path.Add(wayPoint.GetComponent<WayPoint>());
+            var wayPoint = child.GetComponent<WayPoint>();
+            if(wayPoint != null)
+                path.Add(wayPoint);
         }
     }
 }

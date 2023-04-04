@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 using TMPro;
-using System;
 
 [ExecuteAlways]
 public class CoordinatesLabeler : MonoBehaviour
@@ -16,6 +15,7 @@ public class CoordinatesLabeler : MonoBehaviour
     private void Awake()
     {
         _label = GetComponent<TMP_Text>();
+        _label.enabled = false;
         _waypoint = GetComponentInParent<WayPoint>();
         DisplayCoordinates();
         ColorCoordinates();
