@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 public class TargetLocater : MonoBehaviour
 {
     [SerializeField] private Transform TopMesh;
-    [SerializeField] private float radius = 15f;
+    [SerializeField] private float radius = 25f;
     [SerializeField] private ParticleSystem bolts;
 
     private Transform _target;

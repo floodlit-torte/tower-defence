@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class WayPoint : MonoBehaviour
 {
+    [SerializeField] private Tower tower;
     [SerializeField] private bool isPlaycable;
-    [SerializeField] private GameObject Tower;
-
     public bool IsPlaycable
     {
         get { return isPlaycable; }
@@ -13,7 +12,7 @@ public class WayPoint : MonoBehaviour
     {
         if (!isPlaycable)
             return;
-        Instantiate(Tower, gameObject.transform.position, Quaternion.identity);
-        isPlaycable = false;
+        var isPlaced = tower.CreateTower(tower, transform.position);
+        isPlaycable = !isPlaced;
     }
 }

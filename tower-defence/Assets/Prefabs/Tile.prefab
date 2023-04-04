@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5254689276263053838}
   - component: {fileID: 4314965854141452976}
   - component: {fileID: 111785044292046610}
-  - component: {fileID: 8301972815446071483}
+  - component: {fileID: 1526942318698137773}
   m_Layer: 0
   m_Name: Coordinates
   m_TagString: Untagged
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 363455000626969056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 4314965854141452976}
   m_maskType: 0
---- !u!114 &8301972815446071483
+--- !u!114 &1526942318698137773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  blockedColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &4632131918719940150
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,8 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2994149aa95aafd429ba8170c1d943ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tower: {fileID: 4118696902950475255, guid: e9dea844c0afceb4ba5b03ef0050364d, type: 3}
   isPlaycable: 1
-  Tower: {fileID: 3219458064393657486, guid: e9dea844c0afceb4ba5b03ef0050364d, type: 3}
 --- !u!65 &3108583797279188594
 BoxCollider:
   m_ObjectHideFlags: 0
