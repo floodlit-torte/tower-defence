@@ -24,7 +24,7 @@ public class Bank : MonoBehaviour
         _currentBalance += Mathf.Abs(value);
         ChangeText();
 
-        if(_currentBalance > 500)
+        if(_currentBalance > 1000)
         {
             ReloadScene();
         }
