@@ -12,7 +12,7 @@ public class PathFinder : MonoBehaviour
     private Dictionary<Vector2Int, Node> reached = new ();
     private Queue<Node> frontier = new();
 
-    private Vector2Int[] _directions = {Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left};
+    private Vector2Int[] _directions = {Vector2Int.right, Vector2Int.up, Vector2Int.down, Vector2Int.left};
 
     private GridManager _gridManager;
 
@@ -24,23 +24,25 @@ public class PathFinder : MonoBehaviour
         if(_gridManager != null)
         {
             grid = _gridManager.Grid;
+            _startingNode = grid[startingCoordinates];
+            _endNode = grid[endCoordinates];
         }
     }
 
     private void Start()
     {
-        _startingNode = grid[startingCoordinates];
-        _endNode = grid[endCoordinates];
+        GetNewPath();
+    }
+
+    public List<Node> GetNewPath()
+    {
+        _gridManager.ResetNodes();
         BreadthFirstSearch();
-        BuildPath();
+        return BuildPath();
     }
 
     private void ExploreNeighbors()
     {
-        if (grid.ContainsKey(currentSearchNode.coordinates))
-        {
-            grid[currentSearchNode.coordinates].isPath = true;
-        }
         List<Node> neighbors = new List<Node>();
         foreach (Vector2Int direction in _directions)
         {
@@ -64,6 +66,12 @@ public class PathFinder : MonoBehaviour
 
     private void BreadthFirstSearch()
     {
+        _startingNode.isWalkable = true;
+        _endNode.isWalkable = true;
+
+        frontier.Clear();
+        reached.Clear();
+
         bool isRunning = true;
         frontier.Enqueue(_startingNode);
         reached.Add(startingCoordinates, _startingNode);

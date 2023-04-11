@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor;
 using TMPro;
 
 [ExecuteAlways]
@@ -69,8 +68,8 @@ public class CoordinatesLabeler : MonoBehaviour
     private void DisplayCoordinates()
     {
         var position = transform.parent.position;
-        _coordinates.x = Mathf.RoundToInt(position.x / EditorSnapSettings.move.x);
-        _coordinates.y = Mathf.RoundToInt(position.z / EditorSnapSettings.move.z);
+        _coordinates.x = Mathf.RoundToInt(position.x / _gridManager.UnityGridSize);
+        _coordinates.y = Mathf.RoundToInt(position.z / _gridManager.UnityGridSize);
 
         _label.text = $"{_coordinates.x};{_coordinates.y}";
     }
