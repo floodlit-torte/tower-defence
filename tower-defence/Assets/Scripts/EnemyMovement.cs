@@ -6,7 +6,7 @@ using System;
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private List<WayPoint> path = new List<WayPoint>();
+    [SerializeField] private List<Tile> path = new List<Tile>();
     [SerializeField] private float speed = 2f;
     [SerializeField] [Range(0f, 1f)] private float travelPercent = 0f;
 
@@ -65,7 +65,7 @@ public class EnemyMovement : MonoBehaviour
         var parent = GameObject.FindGameObjectWithTag("Path");
         foreach (Transform child in parent.transform)
         {
-            var wayPoint = child.GetComponent<WayPoint>();
+            var wayPoint = child.GetComponent<Tile>();
             if(wayPoint != null)
                 path.Add(wayPoint);
         }
