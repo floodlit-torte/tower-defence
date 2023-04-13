@@ -4,7 +4,9 @@ using UnityEngine;
 public class PathFinder : MonoBehaviour
 {
     [SerializeField] private Vector2Int startingCoordinates;
+    public Vector2Int StartingCoordinates { get { return startingCoordinates; } }
     [SerializeField] private Vector2Int endCoordinates;
+    public Vector2Int EndCoordinates { get { return endCoordinates; } }
     [SerializeField] private Node currentSearchNode;
 
     private Node _startingNode;
@@ -105,5 +107,9 @@ public class PathFinder : MonoBehaviour
 
         path.Reverse();
         return path;
+    }
+    public void NotifyRecievers()
+    {
+        BroadcastMessage("RecalculatePath", SendMessageOptions.DontRequireReceiver);
     }
 }

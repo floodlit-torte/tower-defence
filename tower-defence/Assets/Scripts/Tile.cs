@@ -41,6 +41,7 @@ public class Tile : MonoBehaviour
             {
                 gridManager.BlockNode(coordinates);
                 pathFinder.GetNewPath();
+                pathFinder.NotifyRecievers();
             }
         }
     }
