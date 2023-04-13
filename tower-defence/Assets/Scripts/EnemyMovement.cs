@@ -6,9 +6,10 @@ using System;
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private List<Tile> path = new List<Tile>();
     [SerializeField] private float speed = 2f;
     [SerializeField] [Range(0f, 1f)] private float travelPercent = 0f;
+
+    private List<Node> path = new List<Node>();
 
     private Vector3 startPos;
     private Vector3 finalPos;
@@ -17,21 +18,27 @@ public class EnemyMovement : MonoBehaviour
 
     private Enemy _enemy;
 
-    private void OnEnable()
-    {
-        FindPath();
-        ReturnToStart();
-        StartCoroutine(ProcessMovement());
-    }
-    private void Start()
+    private GridManager _gridManager;
+    private PathFinder _pathfinder;
+
+    private void Awake()
     {
         _pathwaitTime = new WaitForEndOfFrame();
         _enemy = GetComponent<Enemy>();
+        _gridManager = FindObjectOfType<GridManager>();
+        _pathfinder = FindObjectOfType<PathFinder>();
+    }
+
+    private void OnEnable()
+    {
+        ReturnToStart();
+        RecalculatePath();
+        StartCoroutine(ProcessMovement());
     }
 
     private void ReturnToStart()
     {
-        transform.position = path[0].transform.position;
+        transform.position = _gridManager.GetPositionFromCoordinates(_pathfinder.StartingCoordinates);
     }
 
     private void FinishPath()
@@ -41,10 +48,11 @@ public class EnemyMovement : MonoBehaviour
     }
     private IEnumerator ProcessMovement()
     {
-        foreach (var wayPoint in path)
+        for (int index = 1; index < path.Count; index++)
         {
+            var wayPoint = path[index];
             startPos = transform.position;
-            finalPos = wayPoint.transform.position;
+            finalPos = _gridManager.GetPositionFromCoordinates(wayPoint.coordinates);
             travelPercent = 0f;
 
             transform.LookAt(finalPos);
@@ -58,16 +66,10 @@ public class EnemyMovement : MonoBehaviour
         FinishPath();
     }
 
-    private void FindPath()
+    private void RecalculatePath()
     {
         path.Clear();
 
-        var parent = GameObject.FindGameObjectWithTag("Path");
-        foreach (Transform child in parent.transform)
-        {
-            var wayPoint = child.GetComponent<Tile>();
-            if(wayPoint != null)
-                path.Add(wayPoint);
-        }
+        path = _pathfinder.GetNewPath();
     }
 }

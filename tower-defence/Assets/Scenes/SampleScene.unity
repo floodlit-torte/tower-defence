@@ -3601,8 +3601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 5040643765344069697, guid: e894a3b70b437c84bae47006c94c596c, type: 3}
-  spawnTime: 0.4
-  poolSize: 10
+  spawnTime: 2
+  poolSize: 5
 --- !u!4 &864119682
 Transform:
   m_ObjectHideFlags: 0
@@ -3631,7 +3631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingCoordinates: {x: 0, y: 3}
-  endCoordinates: {x: 6, y: 3}
+  endCoordinates: {x: 6, y: 5}
   currentSearchNode:
     coordinates: {x: 0, y: 0}
     isWalkable: 0
